@@ -16,7 +16,6 @@ La paleta de colores va a ser comoda para la vista del usuario, dejando a este d
 # Preguntas y respuestas
 
 ### A
-Abadía: Monasterio o iglesia regidos por un abad o una abadesa.  
 Abadía: Monasterio o iglesia regidos por un abad o una abadesa.
 Abanico: Instrumento usado para hacer aire.
 Abismo: Gran profundidad o distancia.
