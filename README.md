@@ -338,3 +338,4 @@ Zoología: Ciencia que estudia los animales.
 Zorro: Mamífero cánido de hocico alargado y cola abundante.  
 Zumo: Líquido extraído de frutas o vegetales.  
 Zurdo: Persona que utiliza preferentemente la mano izquierda.  
+Zurdo: Persona que utiliza preferentemente la mano izquierda.  
