@@ -64,3 +64,83 @@ app.post('/login', async function (req, res) {
     res.json({ success: false, mensaje: "Los datos son incorrectos" });
   }
 });
+
+// Traer todas las preguntas
+app.get('/preguntas', async function (req, res) {
+  let preguntas = await realizarQuery("SELECT * FROM Preguntas");
+  if (preguntas === null) return res.json([]);
+  res.json(preguntas);
+});
+
+// Agregar pregunta
+app.post('/preguntas', async function (req, res) {
+  let resultado = await realizarQuery(
+    "INSERT INTO Preguntas (letra, pregunta, respuesta, dificultad) VALUES ('" +
+    req.body.letra + "', '" + req.body.pregunta + "', '" +
+    req.body.respuesta + "', '" + req.body.dificultad + "')"
+  );
+  if (resultado === null) return res.send("Error al agregar la pregunta");
+  res.send("Pregunta agregada correctamente");
+});
+
+// Editar pregunta
+app.put('/preguntas/:id', async function (req, res) {
+  let resultado = await realizarQuery(
+    "UPDATE Preguntas SET letra = '" + req.body.letra +
+    "', pregunta = '" + req.body.pregunta +
+    "', respuesta = '" + req.body.respuesta +
+    "', dificultad = '" + req.body.dificultad +
+    "' WHERE id = " + req.params.id
+  );
+  if (resultado === null) return res.send("Error al editar la pregunta");
+  res.send("Pregunta editada correctamente");
+});
+
+// Eliminar pregunta
+app.delete('/preguntas/:id', async function (req, res) {
+  let resultado = await realizarQuery("DELETE FROM Preguntas WHERE id = " + req.params.id);
+  if (resultado === null) return res.send("Error al eliminar la pregunta");
+  res.send("Pregunta eliminada correctamente");
+});
+
+// Traer usuarios (para el panel admin)
+app.get('/usuarios', async function (req, res) {
+  let usuarios = await realizarQuery("SELECT id, nombre, email, es_admin FROM Usuarios");
+  if (usuarios === null) return res.json([]);
+  res.json(usuarios);
+});
+
+// Eliminar usuario
+app.delete('/usuarios/:id', async function (req, res) {
+  let resultado = await realizarQuery("DELETE FROM Usuarios WHERE id = " + req.params.id);
+  if (resultado === null) return res.send("Error al eliminar el usuario");
+  res.send("Usuario eliminado correctamente");
+});
+
+// Traer puntajes (panel admin y futuro ranking)
+app.get('/partidas', async function (req, res) {
+  let partidas = await realizarQuery(
+    "SELECT Partidas.id, Usuarios.nombre, Partidas.puntuacion, Partidas.fecha_creacion " +
+    "FROM Partidas JOIN Usuarios ON Partidas.id_usuario = Usuarios.id " +
+    "ORDER BY Partidas.puntuacion DESC"
+  );
+  if (partidas === null) return res.json([]);
+  res.json(partidas);
+});
+
+// Guardar puntaje al terminar la partida
+app.post('/partidas', async function (req, res) {
+  let resultado = await realizarQuery(
+    "INSERT INTO Partidas (id_usuario, puntuacion, fecha_creacion) VALUES (" +
+    req.body.idUsuario + ", " + req.body.puntuacion + ", CURDATE())"
+  );
+  if (resultado === null) return res.send("Error al guardar el puntaje");
+  res.send("Puntaje guardado correctamente");
+});
+
+// Eliminar puntaje
+app.delete('/partidas/:id', async function (req, res) {
+  let resultado = await realizarQuery("DELETE FROM Partidas WHERE id = " + req.params.id);
+  if (resultado === null) return res.send("Error al eliminar el puntaje");
+  res.send("Puntaje eliminado correctamente");
+});
