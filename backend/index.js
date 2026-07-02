@@ -50,12 +50,17 @@ app.post('/login', async function (req, res) {
   );
 
   if (resultado === null) {
-    return res.send("Error al conectar con la base de datos");
+    return res.json({ success: false, mensaje: "Error al conectar con la base de datos" });
   }
 
   if (resultado.length > 0) {
-    res.send("Bienvenido " + resultado[0].nombre);
+    res.json({
+      success: true,
+      mensaje: "Bienvenido " + resultado[0].nombre,
+      nombre: resultado[0].nombre,
+      esAdmin: resultado[0].es_admin == 1
+    });
   } else {
-    res.send("Los datos son incorrectos");
+    res.json({ success: false, mensaje: "Los datos son incorrectos" });
   }
 });
