@@ -17,7 +17,7 @@ app.get('/', function (req, res) {
   res.status(200).send({ message: 'GET Home route working fine!' });
 });
 
-// REGISTRO
+// registro
 app.post('/registro', async function (req, res) {
   let existe = await realizarQuery(
     "SELECT * FROM Usuarios WHERE id = " + req.body.dni +
