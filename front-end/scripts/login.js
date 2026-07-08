@@ -22,6 +22,10 @@ function handleLogin() {
       localStorage.setItem("usuarioNombre", datos.nombre);
       localStorage.setItem("esAdmin", datos.esAdmin);
       setTimeout(function() {
+
+        /*Qué hace exactamente el códigoEl código evalúa si la propiedad datos.esAdmin es verdadera o falsa:
+        Si datos.esAdmin es true: Redirige al usuario a "admin.html".
+        Si datos.esAdmin es false (o null/undefined): Redirige al usuario a "inicio.html". */
         window.location.href = datos.esAdmin ? "admin.html" : "inicio.html";
       }, 1000);
     } else {
