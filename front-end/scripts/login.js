@@ -1,36 +1,54 @@
+// URL base del servidor backend
+const API = "http://localhost:4000";
+
+// Función para manejar el inicio de sesión
 function handleLogin() {
-  var email = document.getElementById("email").value;
-  var password = document.getElementById("password").value;
-  var mensaje = document.getElementById("mensajeLogin");
+    var email = document.getElementById("email").value; // Obtener email del input
+    var password = document.getElementById("password").value; // Obtener contraseña del input
+    var mensajeLogin = document.getElementById("mensajeLogin"); // Elemento para mensajes
 
-  if (email == "" || password == "") {
-    mensaje.textContent = "Por favor completa todos los campos.";
-    mensaje.className = "text-danger";
-    return;
-  }
+    // Limpiar mensajes anteriores
+    mensajeLogin.className = "";
+    mensajeLogin.textContent = "";
 
-  fetch("http://localhost:4000/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email: email, password: password })
-  })
-  .then(function(respuesta) { return respuesta.json(); })
-  .then(function(datos) {
-    if (datos.success) {
-      mensaje.className = "text-success";
-      mensaje.textContent = datos.mensaje;
-      localStorage.setItem("usuarioNombre", datos.nombre);
-      localStorage.setItem("esAdmin", datos.esAdmin);
-      setTimeout(function() {
-
-        /*Qué hace exactamente el códigoEl código evalúa si la propiedad datos.esAdmin es verdadera o falsa:
-        Si datos.esAdmin es true: Redirige al usuario a "admin.html".
-        Si datos.esAdmin es false (o null/undefined): Redirige al usuario a "inicio.html". */
-        window.location.href = datos.esAdmin ? "admin.html" : "inicio.html";
-      }, 1000);
-    } else {
-      mensaje.className = "text-danger";
-      mensaje.textContent = datos.mensaje + ". Verifica tus datos o registrate.";
+    // Validar campos obligatorios y longitud de contraseña
+    if (email.trim().length === 0 || password.trim().length === 0) {
+        mensajeLogin.textContent = "Por favor, complete todos los campos";
+        mensajeLogin.className = "text-danger";
+        return;
     }
-  });
+    if (password.trim().length < 8) {
+        mensajeLogin.textContent = "La contraseña debe tener al menos 8 caracteres";
+        mensajeLogin.className = "text-danger";
+        return;
+    }
+
+    // Enviar datos al servidor para validar login
+    fetch(API + "/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email, password: password })
+    })
+    .then(function(respuesta) { return respuesta.json(); }) // Convertir respuesta a JSON
+    .then(function(data) {
+        if (data.success) {
+            // Guardar datos del usuario en el almacenamiento local
+            localStorage.setItem("usuarioId", data.id);
+            localStorage.setItem("usuarioNombre", data.nombre);
+            localStorage.setItem("esAdmin", data.esAdmin);
+            // Redirigir a la página correspondiente según rol
+            if (data.esAdmin) {
+                window.location.href = "admin.html";
+            } else {
+                window.location.href = "inicio.html";
+            }
+        } else {
+            mensajeLogin.textContent = "Email y/o contraseña incorrectos";
+            mensajeLogin.className = "text-danger";
+        }
+    })
+    .catch(function(error) {
+        mensajeLogin.textContent = "Error al conectar con el servidor";
+        mensajeLogin.className = "text-danger";
+    });
 }
