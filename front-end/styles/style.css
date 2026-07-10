@@ -1,0 +1,100 @@
+/* Estilos básicos del body */
+body {
+    background-color: #f0f2f5;
+    color: #000;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Estilos para modo oscuro */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* Transiciones para las tarjetas */
+.card-dark, .shadow.bg-white, .shadow.p-3.mb-4.bg-white.rounded {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Tarjetas en modo oscuro */
+body.dark-mode .shadow.bg-white.rounded {
+    background-color: #1e1e1e !important;
+    color: #ffffff;
+}
+
+/* Inputs y selects en modo oscuro */
+body.dark-mode .form-control, 
+body.dark-mode .form-select {
+    background-color: #2d2d2d;
+    color: #ffffff;
+    border-color: #444;
+}
+
+/* Tablas en modo oscuro */
+body.dark-mode .table {
+    color: #ffffff;
+}
+
+body.dark-mode .table tbody tr {
+    border-color: #444;
+}
+
+/* Navbar en modo oscuro */
+body.dark-mode .navbar.bg-secondary {
+    background-color: #2d2d2d !important;
+}
+
+/* Headers y texto negro del navbar en modo oscuro */
+body.dark-mode .navbar h4, 
+body.dark-mode .navbar h5,
+body.dark-mode .navbar .text-black {
+    color: #ffffff !important;
+}
+
+/* Botones del navbar en modo oscuro */
+body.dark-mode .navbar .btn-outline-dark {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+body.dark-mode .navbar .btn-outline-dark:hover {
+    background-color: #ffffff;
+    color: #121212;
+}
+
+/* Estilos para las letras del rosco */
+.rosco-letra {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #1a2b6d;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+/* Letra activa del rosco */
+.rosco-letra.activa {
+    background-color: #3b56b3;
+    outline: 3px solid #1a2b6d;
+}
+
+/* Letra correcta del rosco */
+.rosco-letra.correcta {
+    background-color: #1d9e75;
+}
+
+/* Letra incorrecta del rosco */
+.rosco-letra.incorrecta {
+    background-color: #e53935;
+}
+
+/* Letra pasada del rosco */
+.rosco-letra.pasada {
+    background-color: #f9a825;
+}
