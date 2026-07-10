@@ -40,9 +40,6 @@ function handleRegistro() {
         mostrarError("dni", "El DNI debe tener entre 7 y 8 caracteres");
         hayError = true;
     }
-<<<<<<< Updated upstream
-  });
-=======
 
     // Validar nombre
     if (nombre.trim().length === 0) {
@@ -102,5 +99,4 @@ function handleRegistro() {
         mensajeRegistro.textContent = "Error al conectar con el servidor";
         mensajeRegistro.className = "text-danger";
     });
->>>>>>> Stashed changes
 }
