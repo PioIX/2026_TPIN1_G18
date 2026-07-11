@@ -11,7 +11,7 @@ body.dark-mode {
     color: #ffffff;
 }
 
-/* Transiciones para las tarjetas */
+/* Transiciones para las tarjetas  */
 .card-dark, .shadow.bg-white, .shadow.p-3.mb-4.bg-white.rounded {
     transition: background-color 0.3s, color 0.3s;
 }
