@@ -6,7 +6,7 @@ if (!localStorage.getItem("usuarioNombre")) {
 // Mostrar mensaje de bienvenida con el nombre del usuario
 var elementoBienvenida = document.getElementById("bienvenida");
 if (elementoBienvenida) {
-    elementoBienvenida.textContent = "Bienvenido " + localStorage.getItem("usuarioNombre") + "!";
+    elementoBienvenida.textContent = "¡Bienvenido/a, " + localStorage.getItem("usuarioNombre") + "!";
 }
 
 // Función para cerrar sesión
