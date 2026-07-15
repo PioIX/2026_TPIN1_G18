@@ -16,12 +16,9 @@
         <div class="container-fluid d-flex flex-row align-items-center">
             <div class="flex-grow-1">
                 <h4 class="text-black mb-1">Pasapalabra</h4>
-                <h5 class="text-black mb-1">5to B Informatica 2026 - Colegio Pio IX</h5>
+                <h5 class="text-black mb-1">5to Informatica 2026 - Colegio Pio IX</h5>
             </div>
-            <div class="d-flex gap-2">
-                <button id="toggle-dark-mode" class="btn btn-outline-dark">Modo oscuro</button>
-                <button class="btn btn-outline-dark" onclick="cerrarSesion()">Cerrar sesion</button>
-            </div>
+            <button class="btn btn-outline-dark" onclick="cerrarSesion()">Cerrar sesion</button>
         </div>
     </nav>
 
@@ -29,32 +26,34 @@
         <div class="shadow p-3 mb-4 bg-white rounded">
             <h2 id="bienvenida">Bienvenido!</h2>
         </div>
-        <div id="selector-dificultad" class="shadow p-3 mb-4 bg-white rounded">
-            <legend>Selecciona la dificultad</legend>
-            <div class="d-flex gap-3">
-                <button class="btn btn-primary flex-fill" onclick="iniciarJuego('Facil')">Fácil</button>
-                <button class="btn btn-primary flex-fill" onclick="iniciarJuego('Medio')">Medio</button>
-                <button class="btn btn-primary flex-fill" onclick="iniciarJuego('Dificil')">Difícil</button>
+
+        <div id="seleccion-dificultad" class="shadow p-3 mb-4 bg-white rounded">
+            <legend>Elegi la dificultad</legend>
+            <div class="d-flex gap-2 align-items-center">
+                <select id="dificultadElegida" class="form-select" style="max-width:200px;">
+                    <option value="facil">Facil</option>
+                    <option value="medio">Medio</option>
+                    <option value="dificil">Dificil</option>
+                </select>
+                <button class="btn btn-primary" onclick="empezarJuego()">Empezar juego</button>
             </div>
         </div>
+
         <div id="juego-container" class="shadow p-3 mb-4 bg-white rounded" style="display:none;">
             <legend>Juego</legend>
+            <p class="mb-2">Tiempo restante: <strong id="rosco-timer">5:00</strong></p>
             <div class="d-flex flex-row flex-wrap gap-4 align-items-start">
-                <div id="rosco-circulo" style="position:relative; width:450px; height:450px; flex-shrink:0;"></div>
+                <div id="rosco-circulo" style="position:relative; width:320px; height:320px;"></div>
                 <div class="flex-grow-1" style="min-width:240px;">
                     <p class="mb-1 text-muted">Descripcion</p>
                     <p id="rosco-descripcion" class="border rounded p-2">...</p>
-                    <p class="mb-1 text-muted">Pista (Letra incluida en la palabra)</p>
-                    <p id="rosco-pista" class="border rounded p-2">...</p>
-                    <input id="rosco-respuesta" type="text" class="form-control mb-1" placeholder="Tu respuesta">
-<div id="rosco-error" class="text-danger mb-2" style="display:none;">Por favor, rellena al menos una letra</div>
+                    <input id="rosco-respuesta" type="text" class="form-control mb-2" placeholder="Tu respuesta"
+                        onkeydown="if(event.key === 'Enter') comprobarRespuesta();">
                     <div class="d-flex gap-2">
                         <button class="btn btn-secondary flex-fill" onclick="pasapalabra()">Pasapalabra</button>
                         <button class="btn btn-primary flex-fill" onclick="comprobarRespuesta()">Comprobar</button>
                     </div>
-                    <p class="mt-2 mb-0">Tiempo restante: <span id="rosco-tiempo" class="fw-bold">00:00</span></p>
-                    <p class="mt-1 mb-0">Aciertos: <span id="rosco-aciertos">0</span> / 27</p>
-                    <button id="btn-guardar-partida" class="btn btn-success btn-lg w-100 mt-3" style="display:none;" onclick="guardarPartida()">Guardar Partida</button>
+                    <p class="mt-2 mb-0">Aciertos: <span id="rosco-aciertos">0</span> / 27</p>
                 </div>
             </div>
         </div>
@@ -63,7 +62,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
-    <script src="scripts/dark-mode.js"></script>
     <script src="scripts/inicio.js"></script>
     <script src="scripts/rosco.js"></script>
 </body>
