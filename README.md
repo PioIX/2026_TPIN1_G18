@@ -1,7 +1,12 @@
   
 
 # Proyecto Interdisciplinario Primer Cuatrimestre 2026
-## Grupo conformado por: Julian Lopez del Prado, Santiago Kim, Faustino Vicente y Francisco Lettieri  
+## Grupo conformado por: 
+- Julian Lopez del Prado
+- Santiago Kim
+- Faustino Vicente
+- Francisco Lettieri
+         
 Hola, bienvenido a nuestro Proyecto Interdisciplinario del Primer Cuatrimestre de 2026.     
     
 Este proyecto consiste en crear un juego web completo con sistema de registro e inicio de sesión, administración de datos y tabla de puntajes. Para desarrollarlo utilizaremos HTML, CSS, JavaScript, Fetch y una base de datos MySQL.
