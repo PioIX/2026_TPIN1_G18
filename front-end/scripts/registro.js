@@ -11,6 +11,24 @@ function handleRegistro() {
     return;
   }
 
+  if (dni.length < 7 || dni.length > 8) {
+    mensaje.textContent = "El DNI debe tener entre 7 y 8 numeros.";
+    mensaje.className = "text-danger";
+    return;
+  }
+
+  if (email.indexOf("@") === -1) {
+    mensaje.textContent = "El email debe contener un @.";
+    mensaje.className = "text-danger";
+    return;
+  }
+
+  if (password.length < 8) {
+    mensaje.textContent = "La contrasena debe tener al menos 8 caracteres.";
+    mensaje.className = "text-danger";
+    return;
+  }
+
   fetch("http://localhost:4000/registro", {
     method: "POST",
     headers: {
