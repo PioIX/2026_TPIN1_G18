@@ -72,6 +72,7 @@ app.get('/preguntas', async function (req, res) {
   if (req.query.dificultad) {
     query += " WHERE dificultad = '" + req.query.dificultad + "'";
   }
+  query += " ORDER BY letra ASC";
   let preguntas = await realizarQuery(query);
   if (preguntas === null) return res.json([]);
   res.json(preguntas);
