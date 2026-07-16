@@ -33,9 +33,9 @@
         <div id="selector-dificultad" class="shadow p-3 mb-4 bg-white rounded">
             <legend>Selecciona la dificultad</legend>
             <div class="d-flex gap-3">
-                <button class="btn btn-primary flex-fill" onclick="iniciarJuego('Facil')">Fácil</button>
-                <button class="btn btn-primary flex-fill" onclick="iniciarJuego('Medio')">Medio</button>
-                <button class="btn btn-primary flex-fill" onclick="iniciarJuego('Dificil')">Difícil</button>
+                <button class="btn btn-primary flex-fill" onclick="empezarJuego('Facil')">Fácil</button>
+                <button class="btn btn-primary flex-fill" onclick="empezarJuego('Medio')">Medio</button>
+                <button class="btn btn-primary flex-fill" onclick="empezarJuego('Dificil')">Difícil</button>
             </div>
         </div>
 
@@ -63,10 +63,6 @@
                         <button class="btn btn-secondary flex-fill" onclick="pasapalabra()">Pasapalabra</button>
                         <button class="btn btn-primary flex-fill" onclick="comprobarRespuesta()">Comprobar</button>
                     </div>
-
-                    <p class="mt-2 mb-0">Tiempo restante:
-                        <span id="rosco-tiempo" class="fw-bold">00:00</span>
-                    </p>
 
                     <p class="mt-1 mb-0">Aciertos:
                         <span id="rosco-aciertos">0</span> / 27
